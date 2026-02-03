@@ -71,6 +71,7 @@ cd ../nginx_proxy_manager && docker-compose up -d
 
 **服务端口说明**:
 
+(可根据实际情况修改docker-compose.yml)
 * SRS RTMP: 1935, HTTP: 8080
 * MinIO API: 9002, Console: 9003
 * Mosquitto MQTT: 1883
@@ -105,8 +106,9 @@ python api_server.py
 编译并运行 React 前端。
 ```bash
 cd cloud_server/frontend/rk3588_alarm
-npm install
+npm install lucide-react
 # 修改 src/App.jsx 中的 API_BASE_URL 指向 API 服务器地址
+npm install @tailwindcss/vite
 npm run dev
 
 ```
@@ -131,7 +133,8 @@ pip install -r requirements.txt
 
 ```
 
-*注意: 必须确保系统已安装对应版本的 librknnrt.so 和 MPP 驱动。*
+*注意: 必须确保系统已安装对应版本的 librknnrt.so 和 MPP 驱动。*（建议参考网络上具体的开发板教程，MPP及FFmpeg需要编译(或交叉编译)）
+参考：[rkmpp](https://gitee.com/mirrors_rockchip-linux/mpp)
 
 #### 运行主程序
 
@@ -160,7 +163,10 @@ python pushdata.py
 
 ### 3. 模型转换 (PC 端)
 
-如果需要更新检测模型，需在 PC 端将 PyTorch/ONNX 模型转换为 RKNN 格式。
+如果需要更新检测模型，需在 PC 端将 PyTorch/ONNX 模型转换为 RKNN 格式。（建议参考网络上具体的开发板教程）
+参考：
+[rknn-toolkit2](https://github.com/airockchip/rknn-toolkit2)
+
 
 1. 进入 `pc/model_export` 目录。
 2. 确保已安装 `ultralytics` 和 `rknn-toolkit2`。
@@ -170,7 +176,7 @@ python export_rk3588_model.py
 
 ```
 
-
+*注意: 转换模型需要在x86_64或arm64下，MacOS无法直接转换，可以用docker部署arm64 Ubuntu进行转换*
 生成的 `.rknn` 文件需复制到 `edge_node/main` 目录下使用。
 
 ## 配置说明
