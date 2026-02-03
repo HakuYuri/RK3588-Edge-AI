@@ -22,6 +22,9 @@
 3. **PC 端 (Model Export)**
 * 用于将 PyTorch/ONNX 模型转换为适配 RK3588 NPU 的 `.rknn` 模型文件。
 
+系统架构如下：
+![系统架构](https://github.com/HakuYuri/RK3588-Edge-AI/blob/main/system.drawio.svg)
+
 
 
 ## 目录结构
