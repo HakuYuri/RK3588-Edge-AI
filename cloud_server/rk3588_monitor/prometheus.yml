@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'pushgateway'
+    honor_labels: true  # 保留客户端推送过来的标签（如 zone_id）
+    static_configs:
+      - targets: ['pushgateway-rk3588:9091']

@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  srs:
+    image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:5
+    container_name: srs-server
+    stdin_open: true
+    tty: true
+    network_mode: host
+    restart: always 

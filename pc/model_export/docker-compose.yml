@@ -1,0 +1,12 @@
+services:
+  rknn-dev:
+    image: ubuntu:22.04
+    container_name: rknn_toolkit_v2
+    platform: linux/arm64  # 强制使用 x86_64 模拟模式，以兼容 RKNN 的 whl
+    volumes:
+      - .:/workspace       # 将当前目录映射到容器内的 /workspace
+    working_dir: /workspace
+    tty: true              # 保持容器运行
+    stdin_open: true
+    privileged: true       # 提升权限，方便后期可能的 USB 连板调试
+    command: /bin/bash
